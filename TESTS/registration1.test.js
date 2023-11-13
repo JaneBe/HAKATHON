@@ -62,3 +62,5 @@ require("fs")
 {console.log(err);
 })
 })();
+
+console.log("Test");
