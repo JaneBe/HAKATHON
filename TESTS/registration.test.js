@@ -4,6 +4,8 @@ const {Builder, By} = require('selenium-webdriver');
 (async function helloSelenium() {
   let driver = await new Builder().forBrowser('chrome').build();
 
+  const email=process.argv[2];
+  const screenShotId=process.argv[3];
   await driver.get('https://nop-qa.portnov.com');
 const register = driver.findElement(By.className('ico-register'))
 const actions = driver.actions({async: true})
@@ -33,7 +35,7 @@ const YearsSelect= new Select(driver.findElement(By.name("DateOfBirthYear")))
 await YearsSelect.selectByVisibleText("1982");
 const Email = await driver.findElement(By.id("Email"));
 await driver.actions()
-.sendKeys(Email,"554454542@gmail.com")
+.sendKeys(Email,email)
 .perform();
 const Company = await driver.findElement(By.id("Company"));
 await driver.actions()
@@ -52,14 +54,19 @@ const NewsletterCheck=driver.findElement(By.id("Newsletter"))
 NewsletterCheck.click();
 const submit = driver.findElement(By.id('register-button'))
 submit.click();
-const submitScreenShot =await driver.takeScreenshot()
 await driver.actions()
-.pause(5000);
+.pause(5000)
+.perform();
+
+const submitScreenShot =await driver.takeScreenshot()
 require("fs")
-.writeFile("registerFormSubmit6.png",submitScreenShot,"base64",function(err)
+.writeFile(`${screenShotId}.png`,submitScreenShot,"base64",function(err)
+
 {console.log(err);
 
 })
+
+
 
 
 // await actions.pause(20000)
