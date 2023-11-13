@@ -69,6 +69,6 @@ require("fs")
 
 
 
-// await actions.pause(20000)
-// await driver.quit();
+await actions.pause(20000)
+await driver.quit();
 })();
