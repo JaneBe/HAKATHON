@@ -3,6 +3,9 @@ const {Builder, By} = require('selenium-webdriver');
 (async function helloSelenium() {
   let driver = await new Builder().forBrowser('chrome').build();
 
+  const email=process.argv[2];
+  const screenShotId=process.argv[3];
+
   await driver.get('https://nop-qa.portnov.com');
 const register = driver.findElement(By.className('ico-register'))
 const actions = driver.actions({async: true})
@@ -28,7 +31,7 @@ const YearsSelect= new Select(driver.findElement(By.name("DateOfBirthYear")))
 await YearsSelect.selectByVisibleText("1982");
 const Email = await driver.findElement(By.id("Email"));
 await driver.actions()
-.sendKeys(Email,"7156@gmail.com")
+.sendKeys(Email,email)
 .perform();
 const Company = await driver.findElement(By.id("Company"));
 await driver.actions()
@@ -53,7 +56,7 @@ await driver.actions()
 
 const submitScreenShot =await driver.takeScreenshot()
 require("fs")
-.writeFile("registerFormSubmit3.png",submitScreenShot,"base64",function(err)
+.writeFile(`${screenShotId}.png`,submitScreenShot,'base64',function(err)
 {console.log(err);
 })
 })();
