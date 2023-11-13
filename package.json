@@ -1,0 +1,19 @@
+{
+  "name": "pcs-tech-css-main",
+  "version": "1.0.0",
+  "description": "Hak",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "author": "JB",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^10.2.0",
+    "multiple-cucumber-html-reporter": "^3.5.0",
+    "selenium-webdriver": "^4.15.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.10"
+  }
+}
